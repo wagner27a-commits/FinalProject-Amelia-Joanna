@@ -24,7 +24,7 @@ public class App extends Application {
         Label websiteLogo = new Label("UniTask");
         Button addTaskBtn = new Button();
         addTaskBtn.setText("Add Task");
-        addTaskBtn.setOnAction(e -> AddTask.display("Add a Task", "hello!"));
+        addTaskBtn.setOnAction(e -> AddTask.display("Add a task!", "hello!"));
         Label balanceLabel = new Label("Balance: "+balance);
         // Import rainbow photo later
         
@@ -48,25 +48,25 @@ public class App extends Application {
         HBox hbox3 = new HBox(200, task3, date3);
         hbox3.setAlignment(Pos.CENTER);
         VBox vbox3 = new VBox(completedTitle, hbox3);
-        VBox vBoxLeft = new VBox(hbox1, vbox2, vbox3);
+        VBox vBoxLeft = new VBox(133,hbox1, vbox2, vbox3);
 
         //Unicorn
         Button storeButton = new Button("Store");
+        storeButton.setOnAction(e -> Store.display("Buy food for your unicorn!", "hello!"));
         Label happiness = new Label("Happiness: "+happy+"%");
         HBox uniTop = new HBox(150,storeButton,happiness);
 
         Button feed = new Button("Feed");
+        feed.setOnAction(e -> Feed.display("Feed your unicorn!", "hello!"));
 
         VBox vBoxRight = new VBox(400,uniTop,feed);
 
-        HBox fullScene = new HBox(vBoxLeft,vBoxRight);
+        HBox fullScene = new HBox(20,vBoxLeft,vBoxRight);
         
         // Scene/Stage
-        Scene mainPage = new Scene(fullScene, 400, 400);
-        primaryStage.setTitle("Main Page");
+        Scene mainPage = new Scene(fullScene, 570, 460);
+        primaryStage.setTitle("UniTask");
         primaryStage.setScene(mainPage);
         primaryStage.show();
-
-        
     }
 }
