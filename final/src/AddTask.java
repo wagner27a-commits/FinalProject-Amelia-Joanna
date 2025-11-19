@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 
 public class AddTask{
     private static Task newTask;
-    // Trying to finish this, keep getting an error
     public static Task display(String title, String message) {
         // Task newTask;
 
