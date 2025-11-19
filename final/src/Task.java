@@ -4,10 +4,12 @@ import java.time.format.DateTimeFormatter;
 public class Task {
     private String taskName;
     private LocalDate taskDue;
+    private boolean taskCompleted;
 
     public Task(String taskName, LocalDate taskDue){
         this.taskName = taskName;
         this.taskDue = taskDue;
+        this.taskCompleted = false;
     }
 
     public String getTaskName(){
@@ -18,6 +20,10 @@ public class Task {
         return taskDue;
     }
 
+    public boolean taskCompleted() {
+        return taskCompleted;
+    }
+
     public String dueString(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d");
         return taskDue.format(formatter);
@@ -26,7 +32,7 @@ public class Task {
     @Override
     public String toString(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d");
-        return taskName + taskDue.format(formatter);
+        return taskName +", "+ taskDue.format(formatter);
     }
 
     @Override

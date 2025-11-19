@@ -12,8 +12,9 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AddTask{
+    private static Task newTask;
     // Trying to finish this, keep getting an error
-    public static void display(String title, String message) {
+    public static Task display(String title, String message) {
         // Task newTask;
 
         Stage addTask = new Stage();
@@ -28,11 +29,12 @@ public class AddTask{
         Label dateLabel = new Label("Due: ");
         Button createTaskBtn = new Button();
         createTaskBtn.setText("Create Task");
-        // createTaskBtn.setOnAction(e -> {
-        //     LocalDate value = datePicker.getValue();
-        //     String text = taskTextField.getText();
-        //     newTask = new Task(text,value);
-        // });
+        createTaskBtn.setOnAction(e -> {
+            LocalDate value = datePicker.getValue();
+            String text = taskTextField.getText();
+            newTask = new Task(text,value);
+            addTask.close();
+        });
 
         HBox datePickerBox = new HBox(10,dateLabel, datePicker);
         datePickerBox.setAlignment(Pos.CENTER);
@@ -46,6 +48,6 @@ public class AddTask{
         addTask.setScene(addTaskPage);
         addTask.showAndWait();
 
-        // return newTask;
+        return newTask;
     }
 }
