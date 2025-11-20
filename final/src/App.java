@@ -56,6 +56,7 @@ public class App extends Application {
 
                 cb.setOnAction(event -> {
                     if (cb.isSelected()) {
+                        tasks.remove(task);
                         table.getChildren().remove(yourTasksCheckbox);
                         completedTable.getChildren().add(yourTasksCheckbox);
                         balance += 100;

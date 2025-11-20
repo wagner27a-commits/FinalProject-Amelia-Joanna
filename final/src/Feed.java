@@ -40,8 +40,10 @@ public class Feed{
             feedButton.setOnAction(e -> {
                 f.decreaseQuantity();
                 App.setHappy(App.getHappy()+f.getHappiness());
-                feed.close();
+                // FeedingPopUp.display("Thanks!", App.getTasks().size(), App.getHappy(), App.getBalance());
                 FeedPopUp.display("Thanks for feeding your unicorn!", App.getTasks().size(), App.getHappy(), App.getBalance());
+                feed.close();
+                // FeedPopUp.display("Thanks for feeding your unicorn!", App.getTasks().size(), App.getHappy(), App.getBalance());
             });
             HBox foodBox = new HBox(20, foodLabel, foodHappiness, feedButton);
 
