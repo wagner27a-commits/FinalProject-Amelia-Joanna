@@ -17,7 +17,7 @@ public class FeedPopUp{
       
         feedPopUp.initModality(Modality.APPLICATION_MODAL);
         feedPopUp.setTitle(title);
-        feedPopUp.setMinWidth(200); 
+        // feedPopUp.setMinWidth(200); 
 
         Label feedingUnicornText = new Label("Thank you for feeding your Unicorn!");
         Label tasksLabel = new Label("Remaining Tasks: " + remainingTasks);
@@ -28,7 +28,7 @@ public class FeedPopUp{
         feedPopUpBox.setAlignment(Pos.CENTER);
         
         // Scene/Stage
-        Scene feedPopUpPage = new Scene(feedPopUpBox, 400, 400);
+        Scene feedPopUpPage = new Scene(feedPopUpBox, 300, 150);
         feedPopUp.setScene(feedPopUpPage);
         feedPopUp.showAndWait();
     }
