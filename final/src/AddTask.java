@@ -14,7 +14,6 @@ import javafx.stage.Stage;
 public class AddTask{
     private static Task newTask;
     public static Task display(String title, String message) {
-        // Task newTask;
 
         Stage addTask = new Stage();
       

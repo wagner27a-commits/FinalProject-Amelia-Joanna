@@ -2,11 +2,13 @@ public class Food {
     private String name;
     private int cost;
     private int numOwned;
+    private int happiness;
 
-    public Food(String name, int cost){
+    public Food(String name, int cost, int happiness){
         this.name = name;
         this.cost = cost;
         this.numOwned = 0;
+        this.happiness = happiness;;
     }
 
     public String getName(){
@@ -21,13 +23,21 @@ public class Food {
         return numOwned;
     }
 
+    public int getHappiness(){
+        return happiness;
+    }
+
     public void increaseQuantity(){
         numOwned++;
     }
 
+    public void decreaseQuantity(){
+        numOwned--;
+    }
+
     @Override
     public String toString(){
-        return name + ", " + cost +" Rainbows, "+numOwned+" owned";
+        return name + ", " + cost +" Rainbows, "+numOwned+" owned, +"+happiness+" happiness";
     }
 
     @Override
@@ -41,6 +51,6 @@ public class Food {
         Food that = (Food) o;
         // performs actual comparison
         // compare this with that
-        return this.name == that.name && this.cost == that.cost && this.numOwned == that.numOwned;
+        return this.name == that.name && this.cost == that.cost && this.numOwned == that.numOwned && this.happiness == that.happiness;
     }
 }
