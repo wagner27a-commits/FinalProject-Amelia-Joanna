@@ -60,6 +60,13 @@ public class App extends Application {
 
         Label balanceLabel = new Label("Balance: "+balance);
 
+        String pathRainbow = "final/src/Rainbow-1.png.png";
+        FileInputStream inputFileRainbow = new FileInputStream(pathRainbow);
+        Image rain = new Image(inputFileRainbow);
+        ImageView rainbow = new ImageView(rain);
+
+        HBox balanceBox = new HBox(3,balanceLabel,rainbow);
+
         addTaskBtn.setOnAction(e -> {
             Task newTask = AddTask.display("Add a task!", "hello!");
             tasks.add(newTask);
@@ -120,7 +127,7 @@ public class App extends Application {
         // Import rainbow photo later
         
         VBox vbox1L = new VBox(websiteLogo, addTaskBtn);
-        HBox hbox1 = new HBox(100, vbox1L, balanceLabel);
+        HBox hbox1 = new HBox(100, vbox1L, balanceBox);
 
         // Part 2
         Label yourTasks = new Label("Your Tasks");
@@ -169,9 +176,13 @@ public class App extends Application {
         VBox vBoxRight = new VBox(100,uniTop,uni, feed);
 
         HBox fullScene = new HBox(20,vBoxLeft,vBoxRight);
+        fullScene.setAlignment(Pos.CENTER);
+
+        VBox full = new VBox(fullScene);
+        full.setAlignment(Pos.CENTER);
         
         // Scene/Stage
-        Scene mainPage = new Scene(fullScene, 580, 520);
+        Scene mainPage = new Scene(full, 630, 550);
         mainPage.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle("UniTask");
         primaryStage.setScene(mainPage);
