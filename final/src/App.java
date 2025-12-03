@@ -173,7 +173,20 @@ public class App extends Application {
         HBox uni = new HBox(uniView);
         uni.setAlignment(Pos.CENTER);
 
-        VBox vBoxRight = new VBox(100,uniTop,uni, feed);
+        Button playButton = new Button("Play");
+        playButton.setOnAction(e -> {
+            if (happy >= 100) {
+                happy = 100;
+            } else {
+                happy +=10;
+            }
+            happiness.setText("Happiness: "+happy+"%");
+        });
+
+        HBox uniBottom = new HBox(200,feed, playButton);
+
+        VBox vBoxRight = new VBox(100,uniTop,uni, uniBottom);
+
 
         HBox fullScene = new HBox(20,vBoxLeft,vBoxRight);
         fullScene.setAlignment(Pos.CENTER);
@@ -183,7 +196,7 @@ public class App extends Application {
         
         // Scene/Stage
         Scene mainPage = new Scene(full, 630, 550);
-        mainPage.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        // mainPage.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setTitle("UniTask");
         primaryStage.setScene(mainPage);
         primaryStage.show();
