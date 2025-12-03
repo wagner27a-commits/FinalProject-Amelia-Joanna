@@ -1,13 +1,7 @@
-// import java.time.LocalDate;
-
-// import javafx.application.Application;
-// import javafx.event.ActionEvent;
-// import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-// import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -27,8 +21,9 @@ public class NotEnoughRainbows{
         texts.setAlignment(Pos.CENTER);
         
         // Scene/Stage
-        Scene nenoughRainbows = new Scene(texts, 300, 150);
-        notEnoughRainbows.setScene(nenoughRainbows);
+        Scene notEnoughRainbowsScene = new Scene(texts, 300, 150);
+        notEnoughRainbowsScene.getStylesheets().add("style.css");
+        notEnoughRainbows.setScene(notEnoughRainbowsScene);
         notEnoughRainbows.showAndWait();
     }
 }

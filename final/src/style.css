@@ -5,12 +5,40 @@
         -fx-font-size: 14px;
         -fx-padding: 8px 15px;
         -fx-background-radius: 5px;
+        -fx-font-family: Monaco;
     }
 
     .button:hover {
-    -fx-background-color: rgb(86, 124, 181);
+        -fx-background-color: rgb(86, 124, 181);
+        -fx-font-family: Monaco;
+
     }
 
     .button:pressed {
+        -fx-font-family: Monaco;
         -fx-background-color: rgb(78, 116, 173);
+    }
+
+    #background {
+    -fx-background-color: rgb(210, 230, 255); 
+    }
+
+    .label {
+        -fx-font-family: Monaco;
+    }
+
+    #mainTitle {
+        -fx-font-size: 36px;
+        -fx-padding-bottom: 5px;
+        -fx-font-weight: bold;
+    }
+    
+    #sectionHeader{
+        -fx-font-size: 20px;
+        -fx-font-weight: bold;
+        -fx-underline: true;
+    }
+
+    #subsectionHeader {
+        -fx-font-size: 16px;
     }

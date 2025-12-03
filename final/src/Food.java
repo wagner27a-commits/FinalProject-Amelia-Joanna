@@ -42,15 +42,11 @@ public class Food {
 
     @Override
     public boolean equals(Object o) {
-        // compares to see if same object
         if (o == this)
         return true;
-        // compares type
         if (!(o instanceof Food))
         return false;
         Food that = (Food) o;
-        // performs actual comparison
-        // compare this with that
         return this.name == that.name && this.cost == that.cost && this.numOwned == that.numOwned && this.happiness == that.happiness;
     }
 }

@@ -1,18 +1,11 @@
-// import java.time.LocalDate;
-
-// import javafx.application.Application;
-// import javafx.event.ActionEvent;
-// import javafx.event.EventHandler;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-// import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -20,12 +13,6 @@ public class Store{
 
     public static void display(String title, String message) {
         Stage addStore = new Stage();
-
-        // Food gc = new Food("Glitter Cupcake", 21, 10);
-        // Food rc = new Food("Rainbow Cake", 41, 15);
-        // Food fp = new Food("Funfetti Pancakes", 67, 30);
-        // Food jp = new Food("Jell-O Pudding", 420,50);
-        // Food sd = new Food("Sparkly Donuts", 12, 5);
 
         App.getFoods().add(App.gc());
         App.getFoods().add(App.rc());
@@ -37,10 +24,8 @@ public class Store{
         addStore.setTitle(title);
         addStore.setMinWidth(250); 
 
-        // Add images of all of the food and the rainbow icons
-
         // Food #1 (GC = Glitter Cupcake)
-        String path1 = "final/src/Glitter Cupcake-1.png (2) (1).png";
+        String path1 = "final/src/Images/GlitterCupcake.png";
         FileInputStream inputFile1 = null;
         try {
             inputFile1 = new FileInputStream(path1);
@@ -67,7 +52,7 @@ public class Store{
 
 
         // Food #2 (RC = Rainbow Cake)
-        String path2 = "final/src/finalRainbowCake.png";
+        String path2 = "final/src/Images/RainbowCake.png";
         FileInputStream inputFile2 = null;
         try {
             inputFile2 = new FileInputStream(path2);
@@ -93,7 +78,7 @@ public class Store{
         });
 
         // Food #3 (FP = Funfetti Pancakes)
-        String path3 = "final/src/finalFunfettiPancake.png";
+        String path3 = "final/src/Images/FunfettiPancake.png";
         FileInputStream inputFile3 = null;
         try {
             inputFile3 = new FileInputStream(path3);
@@ -119,7 +104,7 @@ public class Store{
         });
 
         // Food #4 (JP = Jell-o Pudding)
-        String path4 = "final/src/finalJelloPudding.png";
+        String path4 = "final/src/Images/JelloPudding.png";
         FileInputStream inputFile4 = null;
         try {
             inputFile4 = new FileInputStream(path4);
@@ -145,7 +130,7 @@ public class Store{
         });
 
         // Food #5 (SD = Sparkly Donuts)
-        String path5 = "final/src/finalSparklyDonut.png";
+        String path5 = "final/src/Images/SparklyDonut.png";
         FileInputStream inputFile5 = null;
         try {
             inputFile5 = new FileInputStream(path5);
@@ -192,10 +177,6 @@ public class Store{
         storePane.add(buyJPBtn,3,3);
         storePane.add(buySDBtn,3,4);
 
-        // VBox vBoxStoreLeft = new VBox(20,glitterCupcake, rainbowCake, funfettiPancakes, jelloPudding, sparklyDonuts);
-        // VBox vBoxStoreMiddle = new VBox(20,glitterCupcakeCost, rainbowCakeCost, funfettiPancakesCost, jelloPuddingCost, sparklyDonutsCost);
-        // VBox vBoxStoreRight = new VBox(10,buyGCBtn, buyRCBtn, buyFPBtn, buyJPBtn, buySDBtn);
-
         HBox hBoxStore = new HBox(20,storePane);
         hBoxStore.setAlignment(Pos.CENTER);
 
@@ -208,6 +189,7 @@ public class Store{
         
         // Scene/Stage
         Scene addStore1 = new Scene(store, 400, 400);
+        addStore1.getStylesheets().add("style.css");
         addStore.setScene(addStore1);
         addStore.showAndWait();
     }

@@ -1,25 +1,17 @@
-// import java.time.LocalDate;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-
-// import javafx.application.Application;
-// import javafx.event.ActionEvent;
-// import javafx.event.EventHandler;
-// import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
-// import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class Feed{
     
     public static void display(String title, String message) {
-        // VBox table = new VBox(5);
 
         GridPane grid = new GridPane(10,10);
 
@@ -43,7 +35,7 @@ public class Feed{
         for (int i=0; i<boughtFoods.size(); i++){
             Food f = boughtFoods.get(i);
             if (f.equals(App.gc())){
-                String path1 = "final/src/Glitter Cupcake-1.png (2) (1).png";
+                String path1 = "final/src/Images/GlitterCupcake.png";
                 FileInputStream inputFile1 = null;
                 try {
                     inputFile1 = new FileInputStream(path1);
@@ -55,7 +47,7 @@ public class Feed{
                 image = new ImageView(GC);
             }
             else if (f.equals(App.rc())){
-                String path2 = "final/src/finalRainbowCake.png";
+                String path2 = "final/src/Images/RainbowCake.png";
                 FileInputStream inputFile2 = null;
                 try {
                     inputFile2 = new FileInputStream(path2);
@@ -67,7 +59,7 @@ public class Feed{
                 image = new ImageView(RC);
             }
             else if (f.equals(App.fp())){
-                String path3 = "final/src/finalFunfettiPancake.png";
+                String path3 = "final/src/Images/FunfettiPancake.png";
                 FileInputStream inputFile3 = null;
                 try {
                     inputFile3 = new FileInputStream(path3);
@@ -79,7 +71,7 @@ public class Feed{
                 image = new ImageView(FP);
             }
             else if (f.equals(App.jp())){
-                String path4 = "final/src/finalJelloPudding.png";
+                String path4 = "final/src/Images/JelloPudding.png";
                 FileInputStream inputFile4 = null;
                 try {
                     inputFile4 = new FileInputStream(path4);
@@ -91,7 +83,7 @@ public class Feed{
                 image = new ImageView(JP);
             }
             else if (f.equals(App.sd())){
-                String path5 = "final/src/finalSparklyDonut.png";
+                String path5 = "final/src/Images/SparklyDonut.png";
                 FileInputStream inputFile5 = null;
                 try {
                     inputFile5 = new FileInputStream(path5);
@@ -118,9 +110,7 @@ public class Feed{
                 FeedPopUp.display("Thanks for feeding your unicorn!", App.getTasks().size(), App.getHappy(), App.getBalance());
                 feed.close();
             });
-            // HBox foodBox = new HBox(20, foodLabel, foodHappiness, feedButton);
 
-            // table.getChildren().add(foodBox);
             grid.add(image, 0, i);
             grid.add(foodLabel,1,i);
             grid.add(foodHappiness,2,i);
@@ -131,6 +121,7 @@ public class Feed{
         
         // Scene/Stage
         Scene feedPage = new Scene(vboxFeed, 400, 400);
+        feedPage.getStylesheets().add("style.css");
         feed.setScene(feedPage);
         feed.showAndWait();
     }

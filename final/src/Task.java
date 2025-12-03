@@ -37,15 +37,11 @@ public class Task {
 
     @Override
     public boolean equals(Object o) {
-        // compares to see if same object
         if (o == this)
         return true;
-        // compares type
         if (!(o instanceof Task))
         return false;
         Task that = (Task) o;
-        // performs actual comparison
-        // compare this with that
         return this.taskName == that.taskName && this.taskDue == that.taskDue;
     }
 

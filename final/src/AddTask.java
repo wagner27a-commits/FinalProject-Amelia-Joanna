@@ -1,19 +1,15 @@
 import java.time.LocalDate;
-
-// import javafx.application.Application;
-// import javafx.event.ActionEvent;
-// import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-// import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AddTask{
     private static Task newTask;
     public static Task display(String title, String message) {
+        newTask = null;
 
         Stage addTask = new Stage();
       
@@ -33,16 +29,22 @@ public class AddTask{
             newTask = new Task(text,value);
             addTask.close();
         });
+        Button close = new Button();
+        close.setText("Cancel");
+        close.setOnAction(e -> addTask.close());
 
         HBox datePickerBox = new HBox(10,dateLabel, datePicker);
         datePickerBox.setAlignment(Pos.CENTER);
         HBox hboxAddTask = new HBox(10,taskLabel, taskTextField);
         hboxAddTask.setAlignment(Pos.CENTER);
-        VBox vboxAddTask = new VBox(10,hboxAddTask, datePickerBox, createTaskBtn);
+        HBox buttons = new HBox(10,close,createTaskBtn);
+        buttons.setAlignment(Pos.CENTER);
+        VBox vboxAddTask = new VBox(10,hboxAddTask, datePickerBox, buttons);
         vboxAddTask.setAlignment(Pos.CENTER);
         
         // Scene/Stage
         Scene addTaskPage = new Scene(vboxAddTask, 150, 150);
+        addTaskPage.getStylesheets().add("style.css");
         addTask.setScene(addTaskPage);
         addTask.showAndWait();
 
