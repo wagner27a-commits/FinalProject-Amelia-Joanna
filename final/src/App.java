@@ -34,8 +34,8 @@ public class App extends Application {
     private static Food gc = new Food("Glitter Cupcake", 21, 10);
     private static Food rc = new Food("Rainbow Cake", 41, 15);
     private static Food fp = new Food("Funfetti Pancakes", 67, 30);
-    private static Food jp = new Food("Jell-O Pudding", 420,50);
-    private static Food sd = new Food("Sparkly Donuts", 12, 5);
+    private static Food jp = new Food("Jell-O Pudding", 111,50);
+    private static Food sd = new Food("Sparkly Donuts", 420, 5);
     private static VBox vBoxRight = new VBox();
 
     public static void main(String[] args) {
@@ -62,8 +62,8 @@ public class App extends Application {
         // rainbow currency image
         String pathRainbow = "final/src/Images/Rainbow.png";
         FileInputStream inputFileRainbow = new FileInputStream(pathRainbow);
-        Image rain = new Image(inputFileRainbow);
-        ImageView rainbow = new ImageView(rain);
+        Image rainbowImage = new Image(inputFileRainbow);
+        ImageView rainbow = new ImageView(rainbowImage);
 
         // header
         Label websiteLogo = new Label("UniTask");
@@ -90,14 +90,14 @@ public class App extends Application {
         Label completedTitle = new Label("Completed");
         completedTitle.setId("sectionHeader");
         GridPane completedGridPane = new GridPane(10,5);
-        Label task3 = new Label("Task");
-            task3.setId("subsectionHeader");
+        Label task2 = new Label("Task");
+            task2.setId("subsectionHeader");
 
-        Label date3 = new Label("Date");
-            date3.setId("subsectionHeader");
+        Label date2 = new Label("Date");
+            date2.setId("subsectionHeader");
 
-        completedGridPane.add(task3,1,0);
-        completedGridPane.add(date3,2,0);
+        completedGridPane.add(task2,1,0);
+        completedGridPane.add(date2,2,0);
 
         // this is what happens when you press the add task button
         addTaskBtn.setOnAction(e -> {
@@ -135,8 +135,8 @@ public class App extends Application {
                             completedTasks.add(task);
 
                             completedGridPane.getChildren().clear();
-                            completedGridPane.add(task3,1,0);
-                            completedGridPane.add(date3,2,0);
+                            completedGridPane.add(task2,1,0);
+                            completedGridPane.add(date2,2,0);
                             for (int j=0; j<completedTasks.size(); j++){
                                 Task cTask = completedTasks.get(j);
                                 Label cName = new Label(cTask.getTaskName());
@@ -254,21 +254,24 @@ public class App extends Application {
 
         vBoxRight.setId("rightSide");
 
+        // full scene HBox for horizontal alignment
         HBox fullScene = new HBox(20,vBoxLeft,vBoxRight);
         fullScene.setAlignment(Pos.CENTER);
 
+        // full VBox for vertical alignment
         VBox full = new VBox(fullScene);
         full.setAlignment(Pos.CENTER);
         full.setId("background");
         
         // Scene/Stage
-        Scene mainPage = new Scene(full, 780, 550);
+        Scene mainPage = new Scene(full, 810, 550);
         mainPage.getStylesheets().add("style.css");
         primaryStage.setTitle("UniTask");
         primaryStage.setScene(mainPage);
         primaryStage.show();
     }
 
+    // getters and setters
     public static int getBalance() {
         return balance;
     }
@@ -301,6 +304,7 @@ public class App extends Application {
         return animal;
     }
 
+    // sorts tasks list
     public static void sortTasks(){
         for (int j=0; j<tasks.size()-1; j++){
             for (int i=0; i<tasks.size()-1-j; i++){

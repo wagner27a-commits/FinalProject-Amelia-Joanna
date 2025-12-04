@@ -1,3 +1,5 @@
+// feed popup that pops up when you click the feed button
+
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -15,6 +17,7 @@ public class Feed{
 
         GridPane grid = new GridPane(10,10);
 
+        // adds food that have been bought to a new ArrayList
         ArrayList<Food> boughtFoods = new ArrayList<>();
         for (Food f : App.getFoods()){
             if (f.getQuant()>0){
@@ -28,73 +31,19 @@ public class Feed{
         feed.setTitle(title);
         feed.setMinWidth(400); 
 
+
         Label yourInventory = new Label("Your Inventory");
         yourInventory.setId("sectionHeader");
 
         ImageView image = null;
 
+        // adds all foods to a gridpane
         for (int i=0; i<boughtFoods.size(); i++){
             Food f = boughtFoods.get(i);
-            if (f.equals(App.gc())){
-                String path1 = "final/src/Images/GlitterCupcake.png";
-                FileInputStream inputFile1 = null;
-                try {
-                    inputFile1 = new FileInputStream(path1);
-                }
-                catch (FileNotFoundException e) {
-                    System.err.println(e);
-                }
-                Image GC = new Image(inputFile1);
-                image = new ImageView(GC);
-            }
-            else if (f.equals(App.rc())){
-                String path2 = "final/src/Images/RainbowCake.png";
-                FileInputStream inputFile2 = null;
-                try {
-                    inputFile2 = new FileInputStream(path2);
-                }
-                catch (FileNotFoundException e) {
-                    System.err.println(e);
-                }
-                Image RC = new Image(inputFile2);
-                image = new ImageView(RC);
-            }
-            else if (f.equals(App.fp())){
-                String path3 = "final/src/Images/FunfettiPancake.png";
-                FileInputStream inputFile3 = null;
-                try {
-                    inputFile3 = new FileInputStream(path3);
-                }
-                catch (FileNotFoundException e) {
-                    System.err.println(e);
-                }
-                Image FP = new Image(inputFile3);
-                image = new ImageView(FP);
-            }
-            else if (f.equals(App.jp())){
-                String path4 = "final/src/Images/JelloPudding.png";
-                FileInputStream inputFile4 = null;
-                try {
-                    inputFile4 = new FileInputStream(path4);
-                }
-                catch (FileNotFoundException e) {
-                    System.err.println(e);
-                }
-                Image JP = new Image(inputFile4);
-                image = new ImageView(JP);
-            }
-            else if (f.equals(App.sd())){
-                String path5 = "final/src/Images/SparklyDonut.png";
-                FileInputStream inputFile5 = null;
-                try {
-                    inputFile5 = new FileInputStream(path5);
-                }
-                catch (FileNotFoundException e) {
-                    System.err.println(e);
-                }
-                Image SD = new Image(inputFile5);
-                image = new ImageView(SD);
-            }
+
+            image = getImage(f);
+
+            // layout of the popup + feed button
             Label foodLabel = new Label(f.getName());
             Label foodHappiness = new Label("+"+f.getHappiness()+"% happiness");
             Button feedButton = new Button();
@@ -121,6 +70,7 @@ public class Feed{
             grid.add(feedButton,3,i);
         }
 
+        // entire layout
         VBox vboxFeed = new VBox(10,yourInventory, grid);
         vboxFeed.setId("background");
         
@@ -129,5 +79,34 @@ public class Feed{
         feedPage.getStylesheets().add("style.css");
         feed.setScene(feedPage);
         feed.showAndWait();
+    }
+
+    // method for getting the image of a food
+    public static ImageView getImage(Food f){
+        String path;
+        if (f.equals(App.gc())){
+            path = "final/src/Images/GlitterCupcake.png";
+        }
+        else if (f.equals(App.rc())){
+            path = "final/src/Images/RainbowCake.png";
+        }
+        else if (f.equals(App.fp())){
+            path = "final/src/Images/FunfettiPancake.png";
+        }
+        else if (f.equals(App.jp())){
+            path = "final/src/Images/JelloPudding.png";
+        }
+        else{
+            path = "final/src/Images/SparklyDonut.png";
+        }
+        FileInputStream inputFile = null;
+        try {
+            inputFile = new FileInputStream(path);
+        }
+        catch (FileNotFoundException e) {
+            System.err.println(e);
+        }
+        Image img = new Image(inputFile);
+        return new ImageView(img);
     }
 }

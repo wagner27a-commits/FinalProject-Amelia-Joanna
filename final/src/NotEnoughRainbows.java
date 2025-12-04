@@ -1,3 +1,5 @@
+// popup that pops up when you try to buy a food in the store that you don't have enough rainbows for
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,11 +15,12 @@ public class NotEnoughRainbows{
         notEnoughRainbows.setTitle(title);
         notEnoughRainbows.setMinWidth(250); 
 
-        Label text = new Label("Sorry, you don't have enough rainbows for this.");
+        // text/labels + button that closes the popup
+        Label text1 = new Label("Sorry, you don't have enough rainbows for this.");
         Label text2 = new Label("Please try a different food or completing more tasks.");
         Button ok = new Button("Ok!");
         ok.setOnAction(e -> notEnoughRainbows.close());
-        VBox texts = new VBox(20,text,text2,ok);
+        VBox texts = new VBox(20,text1,text2,ok);
         texts.setAlignment(Pos.CENTER);
         texts.setId("background");
         

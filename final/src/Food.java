@@ -1,3 +1,5 @@
+// class for all of the food in the app
+
 public class Food {
     private String name;
     private int cost;
