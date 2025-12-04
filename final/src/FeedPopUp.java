@@ -13,9 +13,9 @@ public class FeedPopUp{
         feedPopUp.setTitle(title);
         feedPopUp.setMinWidth(200); 
 
-        Label feedingUnicornText = new Label("Thank you for feeding your Unicorn!");
+        Label feedingUnicornText = new Label("Thank you for feeding your "+App.getAnimal()+"!");
         Label tasksLabel = new Label("Remaining Tasks: " + remainingTasks);
-        Label healthLabel = new Label("Current Health: " + currentHealth);
+        Label healthLabel = new Label("Current Happiness: " + currentHealth);
         Label balanceLabel = new Label("Current Balance: " + currentBalance);
         Button ok = new Button("Ok!");
         ok.setOnAction(e -> feedPopUp.close());

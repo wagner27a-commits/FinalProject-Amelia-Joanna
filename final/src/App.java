@@ -19,6 +19,8 @@ public class App extends Application {
         return tasks;
     }
     
+    private static Boolean isUnicorn = true;
+    private static String animal = "unicorn";
     private static ArrayList<Food> foods = new ArrayList<>();
     private static int balance = 0;
     private static int happy = 0;
@@ -28,6 +30,7 @@ public class App extends Application {
     private static Food fp = new Food("Funfetti Pancakes", 67, 30);
     private static Food jp = new Food("Jell-O Pudding", 420,50);
     private static Food sd = new Food("Sparkly Donuts", 12, 5);
+    private static VBox vBoxRight = new VBox();
 
     public static void main(String[] args) {
         launch(args);
@@ -35,6 +38,13 @@ public class App extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
+        if (isUnicorn){
+            animal = "unicorn";
+        }
+        else{
+            animal = "dragon";
+        }
+
         Label task1 = new Label("Task");
             task1.setId("subsectionHeader");
 
@@ -149,9 +159,14 @@ public class App extends Application {
         Image unicorn = new Image(inputFile);
         ImageView uniView = new ImageView(unicorn);
 
+        String pathD = "final/src/Images/Dragon.png";
+        FileInputStream inputFileD = new FileInputStream(pathD);
+        Image dragon1 = new Image(inputFileD);
+        ImageView dragonView = new ImageView(dragon1);
+
         Button storeButton = new Button("Store");
         storeButton.setOnAction(e -> {
-            Store.display("Buy food for your unicorn!", "hello!");
+            Store.display("Buy food for your "+animal+"!", "hello!");
             balanceLabel.setText("Balance: "+ balance);
         });
 
@@ -159,12 +174,15 @@ public class App extends Application {
 
         Button feed = new Button("Feed");
         feed.setOnAction(e -> {
-            Feed.display("Feed your unicorn!", "hello!");
+            Feed.display("Feed your "+animal+"!", "hello!");
             happiness.setText("Happiness: "+happy+"%");
         });
 
         HBox uni = new HBox(uniView);
         uni.setAlignment(Pos.CENTER);
+
+        HBox dragon = new HBox(dragonView);
+        dragon.setAlignment(Pos.CENTER);
 
         Button playButton = new Button("Play");
         playButton.setOnAction(e -> {
@@ -176,9 +194,43 @@ public class App extends Application {
             happiness.setText("Happiness: "+happy+"%");
         });
 
-        HBox uniBottom = new HBox(200,feed, playButton);
+        
 
-        VBox vBoxRight = new VBox(100,uniTop,uni, uniBottom);
+        String text;
+        if (isUnicorn){
+            text = "Switch to Dragon ";
+        }
+        else{
+            text = "Switch to Unicorn";
+        }
+        Button switchAnimal = new Button(text);
+        HBox uniBottom = new HBox(50,feed, switchAnimal, playButton);
+        if (isUnicorn){
+            vBoxRight = new VBox(100,uniTop,uni, uniBottom);
+        }
+        else{
+            vBoxRight = new VBox(100, uniTop, dragon, uniBottom);
+        }
+        switchAnimal.setOnAction(e -> {
+            if (!isUnicorn){
+                vBoxRight.getChildren().remove(1);
+                vBoxRight.getChildren().add(1,uni);
+                App.setIsUnicorn(true);
+                switchAnimal.setText("Switch to Dragon ");
+                animal = "unicorn";
+            }
+            else{
+                vBoxRight.getChildren().remove(1);
+                vBoxRight.getChildren().add(1,dragon);
+                App.setIsUnicorn(false);
+                switchAnimal.setText("Switch to Unicorn");
+                animal = "dragon";
+            }
+        });
+
+
+
+
         vBoxRight.setId("rightSide");
 
 
@@ -190,7 +242,7 @@ public class App extends Application {
         full.setId("background");
         
         // Scene/Stage
-        Scene mainPage = new Scene(full, 720, 550);
+        Scene mainPage = new Scene(full, 780, 550);
         mainPage.getStylesheets().add("style.css");
         primaryStage.setTitle("UniTask");
         primaryStage.setScene(mainPage);
@@ -215,6 +267,18 @@ public class App extends Application {
 
     public static ArrayList<Food> getFoods(){
         return foods;
+    }
+
+    public static void setIsUnicorn(Boolean is){
+        App.isUnicorn = is;
+    }
+
+    public static Boolean getIsUnicorn(){
+        return isUnicorn;
+    }
+
+    public static String getAnimal(){
+        return animal;
     }
 
     public static void sortTasks(){

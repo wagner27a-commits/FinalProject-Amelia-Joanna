@@ -98,6 +98,9 @@ public class Feed{
             Label foodHappiness = new Label("+"+f.getHappiness()+"% happiness");
             Button feedButton = new Button();
             feedButton.setText("Feed Uni!");
+            if (!App.getIsUnicorn()){
+                feedButton.setText("Feed Dragon!");
+            }
             feedButton.setOnAction(e -> {
                 f.decreaseQuantity();
                 int thing = App.getHappy()+f.getHappiness();
@@ -107,7 +110,7 @@ public class Feed{
                 else{
                     App.setHappy(thing);
                 }
-                FeedPopUp.display("Thanks for feeding your unicorn!", App.getTasks().size(), App.getHappy(), App.getBalance());
+                FeedPopUp.display("Thanks for feeding your "+App.getAnimal()+"!", App.getTasks().size(), App.getHappy(), App.getBalance());
                 feed.close();
             });
 

@@ -21,7 +21,7 @@ public class NotEnoughRainbows{
         texts.setAlignment(Pos.CENTER);
         
         // Scene/Stage
-        Scene notEnoughRainbowsScene = new Scene(texts, 300, 150);
+        Scene notEnoughRainbowsScene = new Scene(texts, 420, 150);
         notEnoughRainbowsScene.getStylesheets().add("style.css");
         notEnoughRainbows.setScene(notEnoughRainbowsScene);
         notEnoughRainbows.showAndWait();
