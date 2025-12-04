@@ -41,6 +41,7 @@ public class AddTask{
         buttons.setAlignment(Pos.CENTER);
         VBox vboxAddTask = new VBox(10,hboxAddTask, datePickerBox, buttons);
         vboxAddTask.setAlignment(Pos.CENTER);
+        vboxAddTask.setId("background");
         
         // Scene/Stage
         Scene addTaskPage = new Scene(vboxAddTask, 150, 150);

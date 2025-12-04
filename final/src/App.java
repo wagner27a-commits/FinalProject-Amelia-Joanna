@@ -1,3 +1,9 @@
+// UniTask
+// Amelia Wagner and Joanna Arul Jeeva
+// Date completed
+// UniTask is a task manager productivity planner designed to make completing assignments more enjoyable by rewarding users with the opportunity to take care of a virtual unicorn.
+// I agree to abide by the Academic Honesty Agreement.
+
 import java.io.FileInputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -38,6 +44,14 @@ public class App extends Application {
     
     @Override
     public void start(Stage primaryStage) throws Exception {
+        // adds all of the food to the foods ArrayList
+        foods.add(gc);
+        foods.add(rc);
+        foods.add(fp);
+        foods.add(jp);
+        foods.add(sd);
+
+        // sets initial animal
         if (isUnicorn){
             animal = "unicorn";
         }
@@ -45,6 +59,24 @@ public class App extends Application {
             animal = "dragon";
         }
 
+        // rainbow currency image
+        String pathRainbow = "final/src/Images/Rainbow.png";
+        FileInputStream inputFileRainbow = new FileInputStream(pathRainbow);
+        Image rain = new Image(inputFileRainbow);
+        ImageView rainbow = new ImageView(rain);
+
+        // header
+        Label websiteLogo = new Label("UniTask");
+        websiteLogo.setId("mainTitle");
+        Label happiness = new Label("Happiness: "+happy+"%");
+        Label balanceLabel = new Label("Balance: "+balance);
+        HBox balanceBox = new HBox(3,balanceLabel,rainbow);
+        Button addTaskBtn = new Button();
+        addTaskBtn.setText("Add Task");
+
+        // first task and date label
+        Label yourTasks = new Label("Your Tasks");
+        yourTasks.setId("sectionHeader");
         Label task1 = new Label("Task");
             task1.setId("subsectionHeader");
 
@@ -53,39 +85,31 @@ public class App extends Application {
 
         gridpane.add(task1, 1, 0);
         gridpane.add(date1, 2,0);
-        // Part 1
-        Label websiteLogo = new Label("UniTask");
-        websiteLogo.setId("mainTitle");
-        Label happiness = new Label("Happiness: "+happy+"%");
-        Button addTaskBtn = new Button();
 
+        // second task and date label
+        Label completedTitle = new Label("Completed");
+        completedTitle.setId("sectionHeader");
+        GridPane completedGridPane = new GridPane(10,5);
         Label task3 = new Label("Task");
-        task3.setId("subsectionHeader");
+            task3.setId("subsectionHeader");
 
         Label date3 = new Label("Date");
-        date3.setId("subsectionHeader");
+            date3.setId("subsectionHeader");
 
-        addTaskBtn.setText("Add Task");
-        GridPane completedGridPane = new GridPane(10,5);
         completedGridPane.add(task3,1,0);
         completedGridPane.add(date3,2,0);
 
-        Label balanceLabel = new Label("Balance: "+balance);
-
-        String pathRainbow = "final/src/Images/Rainbow.png";
-        FileInputStream inputFileRainbow = new FileInputStream(pathRainbow);
-        Image rain = new Image(inputFileRainbow);
-        ImageView rainbow = new ImageView(rain);
-
-        HBox balanceBox = new HBox(3,balanceLabel,rainbow);
-
+        // this is what happens when you press the add task button
         addTaskBtn.setOnAction(e -> {
+            // creates a new task
             Task newTask = AddTask.display("Add a task!", "hello!");
             if (newTask != null){
                 tasks.add(newTask);
             }
 
             sortTasks();
+
+            // adds all tasks to a gridpane as long as the user does not close the popup before entering information
             if (tasks.size()!=0 && newTask != null){
                 gridpane.getChildren().clear();
                 gridpane.add(task1, 1, 0);
@@ -101,6 +125,7 @@ public class App extends Application {
                     gridpane.add(name,1,i+1);
                     gridpane.add(date,2,i+1);
 
+                    // when a task is checked off, move it from the first gridpane to the completed gridpane
                     cb.setOnAction(event -> {
                         if (cb.isSelected()) {
                             tasks.remove(task);
@@ -127,6 +152,8 @@ public class App extends Application {
                             balanceLabel.setText("Balance: "+balance);
                         }
                     });
+
+                    // decreases happiness if there are overdue tasks
                     if (task.getTaskDue().isBefore(LocalDate.now())){
                         App.setHappy(App.getHappy()-20);
                     }
@@ -136,66 +163,63 @@ public class App extends Application {
 
         });
         
+        // makes the entire left side of the application into one formatted VBox
         VBox vbox1L = new VBox(websiteLogo, addTaskBtn);
         HBox hbox1 = new HBox(100, vbox1L, balanceBox);
-
-        // Part 2
-        Label yourTasks = new Label("Your Tasks");
-        yourTasks.setId("sectionHeader");
-
         VBox vbox2 = new VBox(10, yourTasks, gridpane);
-
-        // Part 3
-        Label completedTitle = new Label("Completed");
-        completedTitle.setId("sectionHeader");
-
         VBox vbox3 = new VBox(10, completedTitle, completedGridPane);
         VBox vBoxLeft = new VBox(20,hbox1, vbox2, vbox3);
         vBoxLeft.setId("leftSide");
 
-        // Unicorn
+        // Unicorn image
         String path = "final/src/Images/Uni.png";
         FileInputStream inputFile = new FileInputStream(path);
         Image unicorn = new Image(inputFile);
         ImageView uniView = new ImageView(unicorn);
 
+        // Dragon image
         String pathD = "final/src/Images/Dragon.png";
         FileInputStream inputFileD = new FileInputStream(pathD);
         Image dragon1 = new Image(inputFileD);
         ImageView dragonView = new ImageView(dragon1);
 
+        // Store button
         Button storeButton = new Button("Store");
         storeButton.setOnAction(e -> {
             Store.display("Buy food for your "+animal+"!", "hello!");
             balanceLabel.setText("Balance: "+ balance);
         });
 
+        // HBox for the top of the right side
         HBox uniTop = new HBox(150, storeButton, happiness);
 
+        // Feed button
         Button feed = new Button("Feed");
         feed.setOnAction(e -> {
             Feed.display("Feed your "+animal+"!", "hello!");
             happiness.setText("Happiness: "+happy+"%");
         });
 
+        // unicorn HBox
         HBox uni = new HBox(uniView);
         uni.setAlignment(Pos.CENTER);
 
+        // dragon HBox
         HBox dragon = new HBox(dragonView);
         dragon.setAlignment(Pos.CENTER);
 
+        // play button
         Button playButton = new Button("Play");
         playButton.setOnAction(e -> {
             if (happy >= 100) {
                 happy = 100;
             } else {
-                happy +=10;
+                happy +=5;
             }
             happiness.setText("Happiness: "+happy+"%");
         });
 
-        
-
+        // Switch animal button
         String text;
         if (isUnicorn){
             text = "Switch to Dragon ";
@@ -228,11 +252,7 @@ public class App extends Application {
             }
         });
 
-
-
-
         vBoxRight.setId("rightSide");
-
 
         HBox fullScene = new HBox(20,vBoxLeft,vBoxRight);
         fullScene.setAlignment(Pos.CENTER);

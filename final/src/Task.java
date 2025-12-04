@@ -24,17 +24,20 @@ public class Task {
         return taskCompleted;
     }
 
+    // Returns the due date formatted nicely
     public String dueString(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d");
         return taskDue.format(formatter);
     }
 
+    // Returns a string representation of the task.
     @Override
     public String toString(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM d");
         return taskName +", "+ taskDue.format(formatter);
     }
 
+    // Checks whether two tasks are equal (same name AND same date).
     @Override
     public boolean equals(Object o) {
         if (o == this)

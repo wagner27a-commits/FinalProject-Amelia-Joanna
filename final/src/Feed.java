@@ -29,6 +29,7 @@ public class Feed{
         feed.setMinWidth(400); 
 
         Label yourInventory = new Label("Your Inventory");
+        yourInventory.setId("sectionHeader");
 
         ImageView image = null;
 
@@ -121,6 +122,7 @@ public class Feed{
         }
 
         VBox vboxFeed = new VBox(10,yourInventory, grid);
+        vboxFeed.setId("background");
         
         // Scene/Stage
         Scene feedPage = new Scene(vboxFeed, 400, 400);

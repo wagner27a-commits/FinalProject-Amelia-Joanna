@@ -22,6 +22,7 @@ public class FeedPopUp{
 
         VBox feedPopUpBox = new VBox(10, feedingUnicornText, tasksLabel, healthLabel, balanceLabel, ok);
         feedPopUpBox.setAlignment(Pos.CENTER);
+        feedPopUpBox.setId("background");
         
         // Scene/Stage
         Scene feedPopUpPage = new Scene(feedPopUpBox, 300, 150);

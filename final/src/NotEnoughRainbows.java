@@ -19,6 +19,7 @@ public class NotEnoughRainbows{
         ok.setOnAction(e -> notEnoughRainbows.close());
         VBox texts = new VBox(20,text,text2,ok);
         texts.setAlignment(Pos.CENTER);
+        texts.setId("background");
         
         // Scene/Stage
         Scene notEnoughRainbowsScene = new Scene(texts, 420, 150);

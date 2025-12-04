@@ -13,12 +13,6 @@ public class Store{
 
     public static void display(String title, String message) {
         Stage addStore = new Stage();
-
-        App.getFoods().add(App.gc());
-        App.getFoods().add(App.rc());
-        App.getFoods().add(App.fp());
-        App.getFoods().add(App.jp());
-        App.getFoods().add(App.sd());
       
         addStore.initModality(Modality.APPLICATION_MODAL);
         addStore.setTitle(title);
@@ -33,11 +27,16 @@ public class Store{
         catch (FileNotFoundException e) {
             System.err.println(e);
         }
+
+        // Display image in the UI
         Image GC = new Image(inputFile1);
         ImageView GCView = new ImageView(GC);
 
+        // Display name and cost labels
         Label glitterCupcake = new Label(App.gc().getName());
         Label glitterCupcakeCost = new Label("21 Rainbows");
+
+        // Buy button
         Button buyGCBtn = new Button();
         buyGCBtn.setText("Buy");
         buyGCBtn.setOnAction(e -> {
@@ -46,6 +45,7 @@ public class Store{
                 App.setBalance(App.getBalance() - App.gc().getCost());
             }
             else{
+                // Shows a display if the user doesn't have enough currency
                 NotEnoughRainbows.display("Not Enough Rainbows", "sorry!");
             }
         });
@@ -65,6 +65,7 @@ public class Store{
 
         Label rainbowCake = new Label(App.rc().getName());
         Label rainbowCakeCost = new Label("41 Rainbows");
+        
         Button buyRCBtn = new Button();
         buyRCBtn.setText("Buy");
         buyRCBtn.setOnAction(e -> {
@@ -186,6 +187,7 @@ public class Store{
 
         VBox store = new VBox(30,hBoxStore,close);
         store.setAlignment(Pos.CENTER);
+        store.setId("background");
         
         // Scene/Stage
         Scene addStore1 = new Scene(store, 400, 400);
