@@ -26,9 +26,10 @@ public class App extends Application {
     }
     
     private static Boolean isUnicorn = true;
+    private static Boolean hasScarf = false;
     private static String animal = "unicorn";
     private static ArrayList<Food> foods = new ArrayList<>();
-    private static int balance = 0;
+    private static int balance = 1000;
     private static int happy = 0;
     private static GridPane gridpane = new GridPane(10,5);
     private static Food gc = new Food("Glitter Cupcake", 21, 10);
@@ -37,6 +38,7 @@ public class App extends Application {
     private static Food jp = new Food("Jell-O Pudding", 111,50);
     private static Food sd = new Food("Sparkly Donuts", 420, 5);
     private static VBox vBoxRight = new VBox();
+    private static Accessory scarf = new Accessory("Scarf", "final/src/Images/Scarf.png", 1000);
 
     public static void main(String[] args) {
         launch(args);
@@ -177,18 +179,26 @@ public class App extends Application {
         Image unicorn = new Image(inputFile);
         ImageView uniView = new ImageView(unicorn);
 
+        // Unicorn image with scarf
+        String pathU2 = "final/src/Images/UniScarf.png";
+        FileInputStream inputFileU2 = new FileInputStream(pathU2);
+        Image unicorn2 = new Image(inputFileU2);
+        ImageView uniViewScarf = new ImageView(unicorn2);
+
         // Dragon image
         String pathD = "final/src/Images/Dragon.png";
         FileInputStream inputFileD = new FileInputStream(pathD);
         Image dragon1 = new Image(inputFileD);
         ImageView dragonView = new ImageView(dragon1);
 
+        String pathDS = "final/src/Images/DragonScarf.png";
+        FileInputStream inputFileDS = new FileInputStream(pathDS);
+        Image dragon1S = new Image(inputFileDS);
+        ImageView dragonViewScarf = new ImageView(dragon1S);
+
         // Store button
         Button storeButton = new Button("Store");
-        storeButton.setOnAction(e -> {
-            Store.display("Buy food for your "+animal+"!", "hello!");
-            balanceLabel.setText("Balance: "+ balance);
-        });
+
 
         // HBox for the top of the right side
         HBox uniTop = new HBox(150, storeButton, happiness);
@@ -204,9 +214,15 @@ public class App extends Application {
         HBox uni = new HBox(uniView);
         uni.setAlignment(Pos.CENTER);
 
+        HBox uniS = new HBox(uniViewScarf);
+        uniS.setAlignment(Pos.CENTER);
+
         // dragon HBox
         HBox dragon = new HBox(dragonView);
         dragon.setAlignment(Pos.CENTER);
+
+        HBox dragonS = new HBox(dragonViewScarf);
+        dragonS.setAlignment(Pos.CENTER);
 
         // play button
         Button playButton = new Button("Play");
@@ -235,20 +251,54 @@ public class App extends Application {
         else{
             vBoxRight = new VBox(100, uniTop, dragon, uniBottom);
         }
+        storeButton.setOnAction(e -> {
+            Store.display("Buy food (or accessories!) for your "+animal+"!", "hello!");
+            balanceLabel.setText("Balance: "+ balance);
+            if (isUnicorn&&!hasScarf){
+                vBoxRight.getChildren().remove(1);
+                vBoxRight.getChildren().add(1,uni);
+            }
+            else if (isUnicorn&&!hasScarf){
+                vBoxRight.getChildren().remove(1);
+                vBoxRight.getChildren().add(1,dragon);
+            }
+            else if (!isUnicorn&&hasScarf){
+                vBoxRight.getChildren().remove(1);
+                vBoxRight.getChildren().add(1,dragonS);
+            }
+            else{
+                vBoxRight.getChildren().remove(1);
+                vBoxRight.getChildren().add(1,uniS);
+            }
+        });
         switchAnimal.setOnAction(e -> {
-            if (!isUnicorn){
+            if (!isUnicorn&&!hasScarf){
                 vBoxRight.getChildren().remove(1);
                 vBoxRight.getChildren().add(1,uni);
                 App.setIsUnicorn(true);
                 switchAnimal.setText("Switch to Dragon ");
                 animal = "unicorn";
             }
-            else{
+            else if (isUnicorn&&!hasScarf){
                 vBoxRight.getChildren().remove(1);
                 vBoxRight.getChildren().add(1,dragon);
                 App.setIsUnicorn(false);
                 switchAnimal.setText("Switch to Unicorn");
                 animal = "dragon";
+            }
+            else if (isUnicorn&&hasScarf){
+                vBoxRight.getChildren().remove(1);
+                vBoxRight.getChildren().add(1,dragonS);
+                App.setIsUnicorn(false);
+                switchAnimal.setText("Switch to Unicorn");
+                animal = "dragon";
+            }
+            else{
+                vBoxRight.getChildren().remove(1);
+                vBoxRight.getChildren().add(1,uniS);
+                App.setIsUnicorn(true);
+                switchAnimal.setText("Switch to Dragon ");
+                animal = "unicorn";
             }
         });
 
@@ -335,6 +385,18 @@ public class App extends Application {
 
     public static Food sd(){
         return sd;
+    }
+
+    public static void hasScarf(){
+        hasScarf = true;
+    }
+
+    public static Accessory scarf(){
+        return scarf;
+    }
+
+    public static Boolean getScarfStatus(){
+        return hasScarf;
     }
 
 }

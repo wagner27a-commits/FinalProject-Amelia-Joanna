@@ -14,6 +14,8 @@ import javafx.stage.Stage;
 public class Store{
 
     public static void display(String title, String message) {
+
+
         Stage addStore = new Stage();
       
         addStore.initModality(Modality.APPLICATION_MODAL);
@@ -29,6 +31,11 @@ public class Store{
         addFoodRow(storePane, 2, App.fp(), "final/src/Images/FunfettiPancake.png", "67 Rainbows");
         addFoodRow(storePane, 3, App.jp(), "final/src/Images/JelloPudding.png", "111 Rainbows");
         addFoodRow(storePane, 4, App.sd(), "final/src/Images/SparklyDonut.png", "420 Rainbows");
+
+        if(!App.getScarfStatus()){
+            addAccessoryRow(storePane, 5, App.scarf(), App.scarf().getPath(), "1000 Rainbows");
+        }
+
 
         HBox hBoxStore = new HBox(20,storePane);
         hBoxStore.setAlignment(Pos.CENTER);
@@ -71,6 +78,27 @@ public class Store{
             pane.add(buyBtn, 3, row);
         }
 
+        private static void addAccessoryRow(GridPane pane, int row, Accessory a, String imagePath, String costText){
+            ImageView imageView;
+
+            try {
+                FileInputStream Stream = new FileInputStream(imagePath);
+                imageView = new ImageView(new Image(Stream));
+            } 
+            catch(FileNotFoundException e) { 
+                System.err.println("Image not found " + imagePath);
+                imageView = new ImageView();
+            }
+
+            Label name = new Label(a.getName());
+            Label cost = new Label(costText);
+            Button buyBtn = createBuyButton(a);
+            
+            pane.add(imageView, 0, row);
+            pane.add(name, 1, row);
+            pane.add(cost, 2, row);
+            pane.add(buyBtn, 3, row);
+        }
     // Buy Button
     private static Button createBuyButton(Food food) {
         Button buyBtn = new Button("Buy");
@@ -78,6 +106,23 @@ public class Store{
             if (App.getBalance() >= food.getCost()){
                 food.increaseQuantity();
                 App.setBalance(App.getBalance() - food.getCost());
+            }
+            else{
+                NotEnoughRainbows.display("Not Enough Rainbows", "sorry!");
+            }
+        });
+
+        return buyBtn;
+    }
+    private static Button createBuyButton(Accessory a) {
+        Button buyBtn = new Button("Buy");
+        buyBtn.setOnAction(e -> {
+            if (App.getBalance() >= a.getCost()){
+                a.own();
+                App.setBalance(App.getBalance() - a.getCost());
+                if (a.equals(App.scarf())){
+                    App.hasScarf();
+                }
             }
             else{
                 NotEnoughRainbows.display("Not Enough Rainbows", "sorry!");
