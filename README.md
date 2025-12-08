@@ -5,12 +5,12 @@ UniTask is a task manager productivity planner designed to make completing assig
 
 #### Feature List
 1. Users can add tasks labeled with titles and due dates, and the program automatically sorts them based on how soon they are due.
-3. When users complete tasks, they earn points that can be spent in the store to purchase different foods for their pet, which can either be a unicorn or a dragon.
+3. When users complete tasks, they earn points that can be spent in the store to purchase different foods or a scarf for their pet, which can either be a unicorn or a dragon.
 4. Feeding the pet with these items increases its happiness level, which users can monitor alongside the pet's image in the interface.
 5. Users can also play with the pet periodically to boost its happiness even further. After each feeding, a pop-up appears showing the unicorn or dragon's updated stats along with the number of remaining tasks.
 
 #### Know Bugs / Limitations
-If time permits, we will add several additional features to enhance the user experience. These include offering more options like adjusting point rewards based on task difficulty or importance. We may also implement subtasks for more detailed task breakdowns, an undo button for task completion, and animations to bring the unicorn/dragon to life. Additional planned improvements could include adding accessory items in the store, such as hats, bows, or costumes.
+If time permits, we will add several additional features to enhance the user experience. These include offering more options like adjusting point rewards based on task difficulty or importance. We may also implement subtasks for more detailed task breakdowns, an undo button for task completion, and animations to bring the unicorn/dragon to life. Additional planned improvements could include adding accessory items in the store beyond the scarf, such as hats, bows, or costumes.
 
 #### Step-By-Step User Guide:
 How to Launch the Program:
@@ -30,8 +30,8 @@ How to Use UniTask:
    - Tasks are automatically sorted by upcoming due date.
   
 3. Visiting the Store/Feeding Your Pet
-   - Click the Store button to browse food items available for purchase.
-   - Each food has a cost. Click any Feed button next to a purchased food item. The pet's's happiness increases.
+   - Click the Store button to browse food items or a scarf that is available for purchase.
+   - Each food and the scarf has a cost. Click any Feed button next to a purchased food item. The pet's's happiness increases.
    - A pop-up confirms the feeding and shares updated stats.
    - You can also switch to a dragon or unicorn pet, based on your preference.
   
