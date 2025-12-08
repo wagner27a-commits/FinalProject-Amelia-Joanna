@@ -99,6 +99,7 @@ public class Store{
             pane.add(cost, 2, row);
             pane.add(buyBtn, 3, row);
         }
+        
     // Buy Button
     private static Button createBuyButton(Food food) {
         Button buyBtn = new Button("Buy");

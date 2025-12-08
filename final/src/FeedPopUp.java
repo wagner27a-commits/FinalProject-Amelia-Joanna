@@ -1,4 +1,4 @@
-// this is the pop up that pops up once you feed your unicorn/dragon
+// this is the pop up that pops up once you feed your unicorn/dragon (updated stats)
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;

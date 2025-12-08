@@ -1,4 +1,4 @@
-// add task popup that pops up when you press the add task button
+// Add task popup that pops up when you press the add task button
 
 import java.time.LocalDate;
 import javafx.geometry.Pos;
@@ -19,7 +19,7 @@ public class AddTask{
         addTask.setTitle(title);
         addTask.setMinWidth(250); 
 
-        // fields for entering information about your task
+        // Fields for entering information about your task
         Label taskLabel = new Label("Task: ");
         TextField taskTextField = new TextField("Type the title of your task here");
         DatePicker datePicker = new DatePicker();

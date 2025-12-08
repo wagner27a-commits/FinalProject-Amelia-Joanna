@@ -17,7 +17,7 @@ public class NotEnoughRainbows{
 
         // text/labels + button that closes the popup
         Label text1 = new Label("Sorry, you don't have enough rainbows for this.");
-        Label text2 = new Label("Please try a different food or completing more tasks.");
+        Label text2 = new Label("Please try a different food/accessory or completing more tasks.");
         Button ok = new Button("Ok!");
         ok.setOnAction(e -> notEnoughRainbows.close());
         VBox texts = new VBox(20,text1,text2,ok);

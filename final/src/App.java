@@ -1,7 +1,7 @@
 // UniTask
 // Amelia Wagner and Joanna Arul Jeeva
-// Date completed
-// UniTask is a task manager productivity planner designed to make completing assignments more enjoyable by rewarding users with the opportunity to take care of a virtual unicorn.
+// 12/08/2025
+// UniTask is a task manager productivity planner designed to make completing assignments more enjoyable by rewarding users with the opportunity to take care of a virtual pet (unicorn/dragon).
 // I agree to abide by the Academic Honesty Agreement.
 
 import java.io.FileInputStream;
@@ -101,9 +101,9 @@ public class App extends Application {
         completedGridPane.add(task2,1,0);
         completedGridPane.add(date2,2,0);
 
-        // this is what happens when you press the add task button
+        // This is what happens when you press the add task button
         addTaskBtn.setOnAction(e -> {
-            // creates a new task
+            // Creates a new task
             Task newTask = AddTask.display("Add a task!", "hello!");
             if (newTask != null){
                 tasks.add(newTask);

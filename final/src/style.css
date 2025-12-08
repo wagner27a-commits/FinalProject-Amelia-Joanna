@@ -19,7 +19,7 @@
     }
 
     #background {
-    -fx-background-color: rgb(210, 230, 255); 
+        -fx-background-color: rgb(210, 230, 255); 
     }
 
     .label {

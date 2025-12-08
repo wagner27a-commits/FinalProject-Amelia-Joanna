@@ -49,6 +49,4 @@ public class Task {
         Task that = (Task) o;
         return this.taskName == that.taskName && this.taskDue == that.taskDue;
     }
-
-    
 }

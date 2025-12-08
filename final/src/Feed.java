@@ -75,7 +75,7 @@ public class Feed{
         vboxFeed.setId("background");
         
         // Scene/Stage
-        Scene feedPage = new Scene(vboxFeed, 400, 400);
+        Scene feedPage = new Scene(vboxFeed, 450, 400);
         feedPage.getStylesheets().add("style.css");
         feed.setScene(feedPage);
         feed.showAndWait();
